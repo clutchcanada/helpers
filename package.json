@@ -1,6 +1,6 @@
 {
-  "name": "craig-common",
-  "version": "1.0.3",
+  "name": "@clutch/helpers",
+  "version": "1.0.0",
   "scripts": {
     "build": "rm -rf ./dist && export BABEL_ENV=production && babel src --out-dir dist --ignore 'src/**/*.test.js'",
     "build:test": "rm -rf ./dist && export BABEL_ENV=production && babel src --out-dir dist",
@@ -10,7 +10,9 @@
   "main": "dist/index.js",
   "author": "craigpullar <craig.pullar@clutch.ca>",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
