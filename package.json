@@ -6,9 +6,9 @@
     "build:test": "rm -rf ./dist && export BABEL_ENV=production && babel src --out-dir dist",
     "test": "./node_modules/.bin/jest --watch"
   },
-  "description": "A collection of common functions I use in various projects",
+  "description": "A collection of helper functions we use at clutch",
   "main": "dist/index.js",
-  "author": "craigpullar <craigmichaelpullar@gmail.com>",
+  "author": "craigpullar <craig.pullar@clutch.ca>",
   "license": "MIT",
   "files": ["dist"],
   "devDependencies": {
@@ -16,17 +16,10 @@
     "@babel/core": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.12.1",
     "jest": "^24.7.1"
   },
   "dependencies": {
     "ramda": "^0.26.1",
     "uuid": "^3.3.2"
-  },
-  "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
   }
 }

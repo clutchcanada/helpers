@@ -1,3 +1,3 @@
-#craig-common
+#@clutch/helpers
 
-A collection of javascript helpers and hooks, I like to use across multiple projects.
+A collection of javascript helpers we use at clutch.
