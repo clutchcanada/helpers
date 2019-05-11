@@ -6,3 +6,4 @@ export {
   default as createValidationFunction,
 } from './createValidationFunction';
 export { default as preventDefault } from './preventDefault';
+export { default as calculateElementAttribute } from "./calculateElementAttribute";
