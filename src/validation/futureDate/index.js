@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 import moment from 'moment';
-import dateValidation from './date';
+import dateValidation from '../date';
 
 const formatDate = R.invoker(0, 'format', 'YYYY-MM-DD');
 const isBeforeDate = value => moment().isBefore(value);
