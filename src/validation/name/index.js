@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import hasValue from './has-value';
+import hasValue from '../hasValue';
 
 const hasLength = R.pipe(
   R.length,
