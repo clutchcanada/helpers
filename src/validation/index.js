@@ -1,4 +1,4 @@
-export { default as hasValue } from './has-value';
+export { default as hasValue } from './hasValue';
 export { default as dateValidation } from './date';
 export { default as postCodeValidation } from './post-code';
 export { default as futureDateValidation } from './futureDate';
