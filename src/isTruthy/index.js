@@ -1,5 +1,5 @@
-import { complement, not } from 'ramda';
+import * as R from 'ramda';
 
-const isTrue = complement(not);
+const isTruthy = R.complement(R.not);
 
-export default isTrue;
+export default isTruthy;
