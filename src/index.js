@@ -10,4 +10,5 @@ export { default as calculateElementAttribute } from "./calculateElementAttribut
 export { default as persistEvent } from "./persistEvent";
 export { default as reconstructEvent } from "./reconstructEvent";
 export { default as isTruthy } from './isTruthy';
+export { default as zeroIfEmptyString } from "./zeroIfEmptyString";
 export * from "./validation";
