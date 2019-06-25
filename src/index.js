@@ -11,4 +11,5 @@ export { default as persistEvent } from "./persistEvent";
 export { default as reconstructEvent } from "./reconstructEvent";
 export { default as isTruthy } from './isTruthy';
 export { default as zeroIfEmptyString } from "./zeroIfEmptyString";
+export { default as combineMultipleProviders } from "./combineMultipleProviders";
 export * from "./validation";
