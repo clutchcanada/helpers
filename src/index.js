@@ -14,3 +14,8 @@ export { default as zeroIfEmptyString } from "./zeroIfEmptyString";
 export { default as combineMultipleProviders } from "./combineMultipleProviders";
 export { default as emptyStringWhenLessThanZero } from "./emptyStringWhenLessThanZero";
 export * from "./validation";
+export { default as removeNonNumbers } from "./removeNonNumbers";
+export { default as includes } from "./includes"
+export { default as callAll } from "./callAll";
+export * from "./validation";
+export * from "./masks";
