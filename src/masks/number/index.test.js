@@ -1,6 +1,5 @@
 import numberMask from "./index";
 
-
 describe("numberMasking", () => {
   it('should mask numbers with commas', () => {
     

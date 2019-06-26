@@ -1,6 +1,5 @@
 import removeNonNumbers from "./index";
 
-
 describe("removeNonNumbers", () => {
   it('should remove non numbers from strings', () => {
     expect(removeNonNumbers("234sdfhs_dsfh7")).toBe("2347");
