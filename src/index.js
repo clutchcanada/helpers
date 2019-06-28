@@ -17,6 +17,8 @@ export { default as removeNonNumbers } from "./removeNonNumbers";
 export { default as includes } from "./includes"
 export { default as callAll } from "./callAll";
 export { default as condValue } from "./condValue";
+export { default as truthyOrZero } from "./truthyOrZero";
+
 export * from "./validation";
 export * from "./masks";
 export * from "./validation";
