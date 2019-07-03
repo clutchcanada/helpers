@@ -11,6 +11,7 @@ export { default as persistEvent } from "./persistEvent";
 export { default as reconstructEvent } from "./reconstructEvent";
 export { default as isTruthy } from './isTruthy';
 export { default as zeroIfEmptyString } from "./zeroIfEmptyString";
+export { default as snakeCaseToReadableString } from "./snakeCaseToReadableString";
 export { default as removeNonNumbers } from "./removeNonNumbers";
 export { default as includes } from "./includes"
 export { default as callAll } from "./callAll";
