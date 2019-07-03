@@ -3,7 +3,7 @@ import moment from 'moment';
 import dateValidation from '../date';
 
 const formatDate = R.invoker(0, 'format', 'YYYY-MM-DD');
-const parseDate = date => moment(date, 'DD/MM/YYYY');
+const parseDate = date => moment(date, 'MM/DD/YYYY');
 const isAfterDate = value => moment().isAfter(value);
 const yearIsGreaterOrEqualTo1900 = R.pipe(
   parseDate,
