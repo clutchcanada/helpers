@@ -11,5 +11,9 @@ export { default as persistEvent } from "./persistEvent";
 export { default as reconstructEvent } from "./reconstructEvent";
 export { default as isTruthy } from './isTruthy';
 export { default as zeroIfEmptyString } from "./zeroIfEmptyString";
+export { default as removeNonNumbers } from "./removeNonNumbers";
+export { default as includes } from "./includes"
+export { default as callAll } from "./callAll";
 export { default as emptyStringWhenLessThanZero } from "./emptyStringWhenLessThanZero";
 export * from "./validation";
+export * from "./masks";
