@@ -1,0 +1,27 @@
+import formatPhoneNumber from "./index";
+
+describe("formatPhoneNumber", () => {
+  it('should throw error if value is not a string', () => {
+    const test1 = () => {
+      formatPhoneNumber(1231231234)
+    };
+    const test2 = () => {
+      formatPhoneNumber(true)
+    };
+    const test3 = () => {
+      formatPhoneNumber([1,2,3])
+    };
+
+    expect(test1).toThrowError();
+    expect(test2).toThrowError();
+    expect(test3).toThrowError();
+  });
+  
+  it('should format the phone number correctly', () => {
+    expect(formatPhoneNumber("1231231234")).toBe("(123) 123-1234");
+  });
+
+  it('should be able to format a partial phone number', () => {
+    expect(formatPhoneNumber("12312312")).toBe("(123) 123-12");
+  });
+});
