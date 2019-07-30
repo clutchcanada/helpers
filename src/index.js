@@ -19,3 +19,5 @@ export { default as truthyOrZero } from "./truthyOrZero";
 export { default as emptyStringWhenLessThanZero } from "./emptyStringWhenLessThanZero";
 export * from "./validation";
 export * from "./masks";
+export { default as formatPrice } from "./formatPrice";
+export { default as formatMileage } from "./formatMileage";
