@@ -7,10 +7,10 @@ describe('formatMileage', () => {
 
     expect(result).toBe('50K');
   });
-  it('should return empty string if mileage does not exist', () => {
+  it('should throw error if mileage does not exist', () => {
     const mileage = null;
-    const result = formatMileage(mileage);
+    const result = () => formatMileage(mileage);
 
-    expect(result).toBe('');
+    expect(result).toThrowError();
   });
 });
