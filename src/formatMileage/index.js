@@ -1,13 +1,7 @@
-const formatMileage = mileage => {
-    if (mileage) {
-      return mileage.toLocaleString('en-CA');
-    }
-  
-    return '';
-};
-  
+const formatMileage = mileage => mileage.toLocaleString('en-CA');
+
 const shortenMileage = mileage =>
     mileage < 1000 ? mileage.toString() : `${Math.round(formatMileage(mileage / 1000))}K`;
   
-export default mileage => shortenMileage(mileage);
+export default mileage => !!mileage ? shortenMileage(mileage) : '';
   
