@@ -1,9 +1,9 @@
 import formatPhoneNumber from "./index";
 
 describe("formatPhoneNumber", () => {
-  it('should throw error if value is not a string', () => {
+  it('should throw error if value is not a string or number', () => {
     const test1 = () => {
-      formatPhoneNumber(1231231234)
+      formatPhoneNumber({})
     };
     const test2 = () => {
       formatPhoneNumber(true)
@@ -24,4 +24,10 @@ describe("formatPhoneNumber", () => {
   it('should be able to format a partial phone number', () => {
     expect(formatPhoneNumber("12312312")).toBe("(123) 123-12");
   });
+
+  it('should format phoneNumber if number data type', () => {
+    expect(formatPhoneNumber(12312312)).toBe("(123) 123-12");
+    
+  })
+  
 });
