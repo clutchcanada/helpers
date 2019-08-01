@@ -20,6 +20,5 @@ export { default as emptyStringWhenLessThanZero } from "./emptyStringWhenLessTha
 export { default as numberMask } from "./numberMask";
 export { default as formatPhoneNumber } from "./formatPhoneNumber";
 export * from "./validation";
-export * from "./masks";
 export { default as formatPrice } from "./formatPrice";
 export { default as formatMileage } from "./formatMileage";
