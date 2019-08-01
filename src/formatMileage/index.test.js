@@ -13,4 +13,16 @@ describe('formatMileage', () => {
 
     expect(result).toThrowError();
   });
+  it('should display mileage is mileage is 0', () => {
+    const mileage = 0;
+    const result = formatMileage(mileage);
+
+    expect(result).toBe('0');
+  });
+  it('should throw error if mileage is not a number', () => {
+    const mileage = "TEST";
+    const result = () => formatMileage(mileage);
+
+    expect(result).toThrowError();
+  });
 });
