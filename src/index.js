@@ -17,5 +17,6 @@ export { default as includes } from "./includes"
 export { default as callAll } from "./callAll";
 export { default as truthyOrZero } from "./truthyOrZero";
 export { default as emptyStringWhenLessThanZero } from "./emptyStringWhenLessThanZero";
+export { default as numberMask } from "./numberMask";
+export { default as formatPhoneNumber } from "./formatPhoneNumber";
 export * from "./validation";
-export * from "./masks";
