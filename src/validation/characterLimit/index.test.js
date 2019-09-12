@@ -1,4 +1,4 @@
-import charLimit from "./index";
+import characterLimit from "./index";
 
 describe("characterLimit", () => {
   it('should return a function that validates the character length of a string', () => {
