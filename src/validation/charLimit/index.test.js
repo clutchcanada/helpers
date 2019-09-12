@@ -1,6 +1,5 @@
 import charLimit from "./index";
 
-
 describe("charLimit", () => {
   it('should return a function that validates the character length of a string', () => {
       const charLimit20 = charLimit(20);
