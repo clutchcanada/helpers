@@ -1,10 +1,10 @@
 import charLimit from "./index";
 
-describe("charLimit", () => {
+describe("characterLimit", () => {
   it('should return a function that validates the character length of a string', () => {
-      const charLimit20 = charLimit(20);
+      const characterLimit20 = characterLimit(20);
 
-      expect(charLimit20("11111")).toBe(true);
-      expect(charLimit20("111111111111111111111")).toBe(false);
+      expect(characterLimit20("11111")).toBe(true);
+      expect(characterLimit20("111111111111111111111")).toBe(false);
   });
 });
