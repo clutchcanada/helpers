@@ -2,7 +2,6 @@ import asyncQueue from "./index";
 
 /* 
 TODO: 
-  test pause
   4. test concurrency
 */
 describe("asyncQueue", () => {
@@ -90,5 +89,25 @@ describe("asyncQueue", () => {
     expect(onResponseMock).toHaveBeenCalledTimes(functions.length);
     done();
   });
+
+  it('should spawn as many consumers as specified in the concurrentCount', async (done) => {
+    const functions = [
+      mockAsync,
+      mockAsync,
+      mockAsync,
+      mockAsync,
+      mockAsync,
+      mockAsync,
+    ];
+
+    const myQueue = asyncQueue({ asyncFunctionArray: functions, concurrentCount: 3 });
+    myQueue.onResponse(() => {
+      myQueue.cancel();
+    });
+    const results = await myQueue.process();
+    expect(results.length).toBe(3);
+    done();
+  });
+  
   
 });
