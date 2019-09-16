@@ -1,3 +1,4 @@
+import * as R from "Ramda";
 function* functionQueue(asyncFunctionArray) {
   for(let i  = 0; i < asyncFunctionArray.length; i++) {
     const result = asyncFunctionArray[i]();
@@ -5,8 +6,8 @@ function* functionQueue(asyncFunctionArray) {
   }
 };
 
-//TODO:pause
-
+//TODO: Error handle process being called whilst processing
+// Refactor
 const asyncQueue =  ({
   asyncFunctionArray,
   concurrentCount = 1,
@@ -15,12 +16,15 @@ const asyncQueue =  ({
   let results = [];
   let onResponse = () => {};
   let canceled = false;
-  let onFinish = () => {};
+
   const consumer = async () => {
+    if(canceled) {
+      return false
+    }
     const streamResponse = queue.next();
     const result = await streamResponse.value;
-    if(streamResponse.done || canceled) {
-      return Promise.resolve();
+    if(streamResponse.done) {
+      return false;
     } else {
       results.push(result);
       onResponse({ result, allResults: results });
@@ -28,14 +32,15 @@ const asyncQueue =  ({
     }
   }
 
-  const start = async () => {
+  const process = async () => {
+    canceled = false;
     const consumers = [...new Array(concurrentCount)].map(() => consumer());
     await Promise.all(consumers);
-    onFinish({ results })
+    return [...results];
   }
 
   return {
-    start,
+    process,
     onResponse: (fn) => {
       onResponse = fn;
     },
@@ -44,7 +49,7 @@ const asyncQueue =  ({
     },
     cancel: () => {
       canceled = true;
-    }
+    },
   };
 }
 

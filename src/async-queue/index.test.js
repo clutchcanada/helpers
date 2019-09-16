@@ -2,7 +2,6 @@ import asyncQueue from "./index";
 
 /* 
 TODO: 
-  3   Test cancel
   test pause
   4. test concurrency
 */
@@ -12,7 +11,7 @@ describe("asyncQueue", () => {
       resolve("hi")
     }, Math.random() * 1000);
   });
-  it('should give results of all async functions', (done) => {
+  it('should give results of all async functions', async (done) => {
     const functions = [
       mockAsync,
       mockAsync,
@@ -23,11 +22,9 @@ describe("asyncQueue", () => {
     ];
 
     const myQueue = asyncQueue({ asyncFunctionArray: functions });
-    myQueue.onFinish(({ results }) => {
-      expect(results).toEqual(["hi","hi","hi","hi","hi","hi"]);
-      done();
-    });
-    myQueue.start();
+    const results = await myQueue.process();
+    expect(results).toEqual(["hi","hi","hi","hi","hi","hi"]);
+    done();
   });
 
   it('should call onResponse when a function resolves', (done) => {
@@ -43,13 +40,13 @@ describe("asyncQueue", () => {
     const myQueue = asyncQueue({ asyncFunctionArray: functions });
     myQueue.onResponse(({ result, allResults }) => {
       expect(result).toEqual("hi");
-      // expect(allResults).toEqual(["hi"])
+      // expect(allResults).toEqual(["hi"]) //TODO: Fix
       done();
     });
-    myQueue.start();
+    myQueue.process();
   });
 
-  it('should be able to cancel the queue', (done) => {
+  it('should be able to cancel the queue', async (done) => {
     const functions = [
       mockAsync,
       mockAsync,
@@ -63,10 +60,35 @@ describe("asyncQueue", () => {
     myQueue.onResponse(() => {
       myQueue.cancel();
     });
-    myQueue.onFinish(({ results }) => {
-      expect(results.length < functions.length).toBe(true);
-      done();
-    });
-    myQueue.start();
+    const results = await myQueue.process();
+    expect(results.length < functions.length).toBe(true);
+    done();
   });
+
+  it('should be able to resume queue', async (done) => {
+
+    const onResponseMock = jest.fn();
+    const functions = [
+      mockAsync,
+      mockAsync,
+      mockAsync,
+      mockAsync,
+      mockAsync,
+      mockAsync,
+    ];
+
+    const myQueue = asyncQueue({ asyncFunctionArray: functions });
+    myQueue.onResponse(() => {
+      myQueue.cancel();
+      onResponseMock();
+    });
+    const results = await myQueue.process();
+    expect(results.length < functions.length).toBe(true);
+    myQueue.onResponse(onResponseMock);
+    const results2 = await myQueue.process();
+    expect(results2.length).toBe(functions.length);
+    expect(onResponseMock).toHaveBeenCalledTimes(functions.length);
+    done();
+  });
+  
 });
