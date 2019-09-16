@@ -1,9 +1,10 @@
 import * as R from "ramda";
+import { throwError } from "..";
 
 function* functionQueue(asyncFunctionArray) {
   for(let i  = 0; i < asyncFunctionArray.length; i++) {
-      const result = asyncFunctionArray[i]();
-      yield { result, index: i };
+    const result = asyncFunctionArray[i]();
+    yield { result, index: i };
   }
 };
 
@@ -17,26 +18,41 @@ const asyncQueue =  ({
   let processing = false;
   let onResponse = () => {};
 
+  const getNextResultFromQueue = async () => {
+    let result;
+    let queueResponse;
+    try {
+      queueResponse = queue.next();
+      const resultPromise = R.pathOr(Promise.resolve(), ["value", "result"], queueResponse);
+      result = await resultPromise;
+    } catch(error) {
+      result = { error }
+    }
+    return {
+      done: queueResponse.done,
+      value: result,
+      index: R.path(["value", "index"], queueResponse),
+    }
+  };
+
   const worker = async () => {
     if(canceled) {
       return false
     }
-    let result;
-    let streamResponse;
-    try {
-      streamResponse = queue.next();
-      result = await R.pathOr(Promise.resolve(), ["value", "result"], streamResponse);
-    } catch(error) {
-      result = { error }
-    }
-    if(streamResponse.done) {
+
+    const queueResult = await getNextResultFromQueue();
+    if(queueResult.done) {
       return false;
-    } else {
-      results[streamResponse.value.index] = result;
-      onResponse({ result, allResults: results });
-      return worker();
     }
-  }
+
+    results[queueResult.index] = queueResult.value;
+    onResponse({
+      result: queueResult.value,
+      allResults: results,
+      index: queueResult.index
+    });
+    return worker();
+  };
 
   const process = async () => {
     processing && throwError("Queue is already processing");

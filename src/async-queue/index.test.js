@@ -130,9 +130,9 @@ describe("asyncQueue", () => {
   });
 
   it('should return an error object if there is an error', async (done) => {
-    const mockErrorAsync = () => new Promise((resolve, reject) => {
+    const mockErrorAsync = (index) => new Promise((resolve, reject) => {
       setTimeout(() => {
-        throw new Error("yolo");
+        reject("yolo");
       }, Math.random() * 1000);
     });
     const functions = [
