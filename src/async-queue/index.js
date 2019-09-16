@@ -16,6 +16,7 @@ const asyncQueue =  ({
   let results = [];
   let onResponse = () => {};
   let canceled = false;
+  let processing = false;
 
   const consumer = async () => {
     if(canceled) {
@@ -33,9 +34,12 @@ const asyncQueue =  ({
   }
 
   const process = async () => {
+    processing && throwError("Queue is already processing");
     canceled = false;
+    processing = true;
     const consumers = [...new Array(concurrentCount)].map(() => consumer());
     await Promise.all(consumers);
+    processing = false;
     return [...results];
   }
 
@@ -43,9 +47,6 @@ const asyncQueue =  ({
     process,
     onResponse: (fn) => {
       onResponse = fn;
-    },
-    onFinish: async (fn) => {
-      onFinish = fn;
     },
     cancel: () => {
       canceled = true;
