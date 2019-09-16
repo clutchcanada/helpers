@@ -1,3 +1,5 @@
+import '@babel/polyfill';
+
 jest.mock('uuid', () => {
   let i = 0;
   return {
