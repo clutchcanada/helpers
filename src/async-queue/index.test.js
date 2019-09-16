@@ -22,7 +22,7 @@ describe("asyncQueue", () => {
     done();
   });
 
-  it('should call onResponse when a function resolves', (done) => {
+  it('should call onResult when a function resolves', (done) => {
     const functions = [
       mockAsync,
       mockAsync,
@@ -33,7 +33,7 @@ describe("asyncQueue", () => {
     ];
 
     const myQueue = asyncQueue({ asyncFunctionArray: functions });
-    myQueue.onResponse(({ result, allResults }) => {
+    myQueue.onResult(({ result, allResults }) => {
       expect(result).toEqual("hi");
       expect(allResults).toEqual(["hi"]);
       myQueue.cancel();
@@ -53,7 +53,7 @@ describe("asyncQueue", () => {
     ];
 
     const myQueue = asyncQueue({ asyncFunctionArray: functions });
-    myQueue.onResponse(() => {
+    myQueue.onResult(() => {
       myQueue.cancel();
     });
     const results = await myQueue.process();
@@ -63,7 +63,7 @@ describe("asyncQueue", () => {
 
   it('should be able to resume queue', async (done) => {
 
-    const onResponseMock = jest.fn();
+    const onResultMock = jest.fn();
     const functions = [
       mockAsync,
       mockAsync,
@@ -74,16 +74,16 @@ describe("asyncQueue", () => {
     ];
 
     const myQueue = asyncQueue({ asyncFunctionArray: functions });
-    myQueue.onResponse(() => {
+    myQueue.onResult(() => {
       myQueue.cancel();
-      onResponseMock();
+      onResultMock();
     });
     const results = await myQueue.process();
     expect(results.length < functions.length).toBe(true);
-    myQueue.onResponse(onResponseMock);
+    myQueue.onResult(onResultMock);
     const results2 = await myQueue.process();
     expect(results2.length).toBe(functions.length);
-    expect(onResponseMock).toHaveBeenCalledTimes(functions.length);
+    expect(onResultMock).toHaveBeenCalledTimes(functions.length);
     done();
   });
 
@@ -98,7 +98,7 @@ describe("asyncQueue", () => {
     ];
 
     const myQueue = asyncQueue({ asyncFunctionArray: functions, concurrentCount: 3 });
-    myQueue.onResponse(() => {
+    myQueue.onResult(() => {
       myQueue.cancel();
     });
     const results = await myQueue.process();
@@ -151,4 +151,29 @@ describe("asyncQueue", () => {
     expect(results[3].error).toBeDefined();
     done();
   });
+
+  it('should call onError on error', async (done) => {
+    const mockErrorAsync = () => new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject("yolo");
+      }, Math.random() * 1000);
+    });
+    const functions = [
+      mockAsync,
+      mockAsync,
+      mockAsync,
+      mockErrorAsync,
+      mockAsync,
+      mockAsync,
+    ];
+
+    const myQueue = asyncQueue({ asyncFunctionArray: functions, concurrentCount: 3 });
+    myQueue.onError(({ error, index}) => {
+      expect(error).toBe("yolo");
+      expect(index).toBe(3);
+      done();
+    })
+    await myQueue.process();
+  });
+  
 });

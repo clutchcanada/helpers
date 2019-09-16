@@ -16,7 +16,8 @@ const asyncQueue =  ({
   let results = [];
   let canceled = false;
   let processing = false;
-  let onResponse = () => {};
+  let onResult = () => {};
+  let onError = () => {};
 
   const getNextResultFromQueue = async () => {
     let result;
@@ -35,6 +36,20 @@ const asyncQueue =  ({
     }
   };
 
+  const handleQueueResult = (queueResult) => {
+    results[queueResult.index] = queueResult.value;
+    !queueResult.value.error && onResult({
+      result: queueResult.value,
+      allResults: [...results],
+      index: queueResult.index
+    });
+    queueResult.value.error && onError({
+      error: queueResult.value.error,
+      allResults: [...results],
+      index: queueResult.index,
+    });
+  };
+
   const worker = async () => {
     if(canceled) {
       return false
@@ -45,12 +60,8 @@ const asyncQueue =  ({
       return false;
     }
 
-    results[queueResult.index] = queueResult.value;
-    onResponse({
-      result: queueResult.value,
-      allResults: [...results],
-      index: queueResult.index
-    });
+    handleQueueResult(queueResult);
+
     return worker();
   };
 
@@ -66,8 +77,11 @@ const asyncQueue =  ({
 
   return {
     process,
-    onResponse: (fn) => {
-      onResponse = fn;
+    onResult: (fn) => {
+      onResult = fn;
+    },
+    onError: (fn) => {
+      onError = fn;
     },
     cancel: () => {
       canceled = true;
