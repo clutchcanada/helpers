@@ -7,8 +7,6 @@ function* functionQueue(asyncFunctionArray) {
   }
 };
 
-//TODO: preserve order
-//TODO: handle errors in functions
 const asyncQueue =  ({
   asyncFunctionArray,
   concurrentCount = 1,

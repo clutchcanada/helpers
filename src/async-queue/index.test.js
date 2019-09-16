@@ -132,7 +132,7 @@ describe("asyncQueue", () => {
   it('should return an error object if there is an error', async (done) => {
     const mockErrorAsync = () => new Promise((resolve, reject) => {
       setTimeout(() => {
-        reject("yolo");
+        throw new Error("yolo");
       }, Math.random() * 1000);
     });
     const functions = [
@@ -149,8 +149,5 @@ describe("asyncQueue", () => {
     expect(results[2].error).not.toBeDefined();
     expect(results[3].error).toBeDefined();
     done();
-  })
-  
-  
-  
+  });
 });
