@@ -105,5 +105,29 @@ describe("asyncQueue", () => {
     done();
   });
   
+  it('should preserve order of functions', async (done) => {
+    const createMockAsync = (value) => () => new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(value)
+      }, Math.random() * 1000);
+    });
+
+    const functions = [
+      createMockAsync(1),
+      createMockAsync(2),
+      createMockAsync(3),
+      createMockAsync(4),
+      createMockAsync(5),
+      createMockAsync(6),
+      createMockAsync(7),
+      createMockAsync(8),
+      createMockAsync(9),
+    ];
+    const myQueue = asyncQueue({ asyncFunctionArray: functions, concurrentCount: 3 });
+    const results = await myQueue.process();
+    expect(results).toEqual([1,2,3,4,5,6,7,8,9])
+    done();
+  });
+  
   
 });

@@ -1,33 +1,36 @@
-import * as R from "Ramda";
+import * as R from "ramda";
+
 function* functionQueue(asyncFunctionArray) {
   for(let i  = 0; i < asyncFunctionArray.length; i++) {
     const result = asyncFunctionArray[i]();
-    yield result;
+    yield { result, index: i };
   }
 };
 
+//TODO: preserve order
+//TODO: handle errors in functions
 const asyncQueue =  ({
   asyncFunctionArray,
   concurrentCount = 1,
 }) => {
   const queue = functionQueue(asyncFunctionArray);
   let results = [];
-  let onResponse = () => {};
   let canceled = false;
   let processing = false;
+  let onResponse = () => {};
 
-  const consumer = async () => {
+  const worker = async () => {
     if(canceled) {
       return false
     }
     const streamResponse = queue.next();
-    const result = await streamResponse.value;
+    const result = await R.pathOr(Promise.resolve(), ["value", "result"], streamResponse);
     if(streamResponse.done) {
       return false;
     } else {
-      results.push(result);
+      results[streamResponse.value.index] = result;
       onResponse({ result, allResults: results });
-      return consumer()
+      return worker();
     }
   }
 
@@ -35,8 +38,8 @@ const asyncQueue =  ({
     processing && throwError("Queue is already processing");
     canceled = false;
     processing = true;
-    const consumers = [...new Array(concurrentCount)].map(() => consumer());
-    await Promise.all(consumers);
+    const workers = [...new Array(concurrentCount)].map(() => worker());
+    await Promise.all(workers);
     processing = false;
     return [...results];
   }
