@@ -6,8 +6,6 @@ function* functionQueue(asyncFunctionArray) {
   }
 };
 
-//TODO: Error handle process being called whilst processing
-// Refactor
 const asyncQueue =  ({
   asyncFunctionArray,
   concurrentCount = 1,
