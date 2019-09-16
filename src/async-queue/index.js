@@ -58,7 +58,7 @@ const asyncQueue =  ({
     processing && throwError("Queue is already processing");
     canceled = false;
     processing = true;
-    const workers = [...new Array(concurrentCount)].map(() => worker());
+    const workers = [...new Array(concurrentCount)].map(worker);
     await Promise.all(workers);
     processing = false;
     return [...results];
