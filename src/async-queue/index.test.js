@@ -1,9 +1,5 @@
 import asyncQueue from "./index";
 
-/* 
-TODO: 
-  4. test concurrency
-*/
 describe("asyncQueue", () => {
   const mockAsync = () => new Promise((resolve, reject) => {
     setTimeout(() => {
