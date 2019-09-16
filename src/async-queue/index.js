@@ -1,11 +1,11 @@
-function* functionQueue(asyncFunctionArray){
+function* functionQueue(asyncFunctionArray) {
   for(let i  = 0; i < asyncFunctionArray.length; i++) {
     const result = asyncFunctionArray[i]();
     yield result;
   }
 };
 
-//TODO: Cancel, pause
+//TODO:pause
 
 const asyncQueue =  ({
   asyncFunctionArray,
@@ -15,7 +15,6 @@ const asyncQueue =  ({
   let results = [];
   let onResponse = () => {};
   let canceled = false;
-
   let onFinish = () => {};
   const consumer = async () => {
     const streamResponse = queue.next();
@@ -44,7 +43,7 @@ const asyncQueue =  ({
       onFinish = fn;
     },
     cancel: () => {
-      cancelled = true;
+      canceled = true;
     }
   };
 }
