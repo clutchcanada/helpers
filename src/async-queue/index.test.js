@@ -128,6 +128,29 @@ describe("asyncQueue", () => {
     expect(results).toEqual([1,2,3,4,5,6,7,8,9])
     done();
   });
+
+  it('should return an error object if there is an error', async (done) => {
+    const mockErrorAsync = () => new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject("yolo");
+      }, Math.random() * 1000);
+    });
+    const functions = [
+      mockAsync,
+      mockAsync,
+      mockAsync,
+      mockErrorAsync,
+      mockAsync,
+      mockAsync,
+    ];
+
+    const myQueue = asyncQueue({ asyncFunctionArray: functions, concurrentCount: 3 });
+    const results = await myQueue.process();
+    expect(results[2].error).not.toBeDefined();
+    expect(results[3].error).toBeDefined();
+    done();
+  })
+  
   
   
 });

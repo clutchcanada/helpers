@@ -2,8 +2,8 @@ import * as R from "ramda";
 
 function* functionQueue(asyncFunctionArray) {
   for(let i  = 0; i < asyncFunctionArray.length; i++) {
-    const result = asyncFunctionArray[i]();
-    yield { result, index: i };
+      const result = asyncFunctionArray[i]();
+      yield { result, index: i };
   }
 };
 
@@ -23,8 +23,14 @@ const asyncQueue =  ({
     if(canceled) {
       return false
     }
-    const streamResponse = queue.next();
-    const result = await R.pathOr(Promise.resolve(), ["value", "result"], streamResponse);
+    let result;
+    let streamResponse;
+    try {
+      streamResponse = queue.next();
+      result = await R.pathOr(Promise.resolve(), ["value", "result"], streamResponse);
+    } catch(error) {
+      result = { error }
+    }
     if(streamResponse.done) {
       return false;
     } else {
