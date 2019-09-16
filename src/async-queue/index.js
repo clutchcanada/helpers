@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import { throwError } from "..";
+import { throwError } from "../throwError";
 
 function* functionQueue(asyncFunctionArray) {
   for(let i  = 0; i < asyncFunctionArray.length; i++) {
