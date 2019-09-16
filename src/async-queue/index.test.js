@@ -35,7 +35,8 @@ describe("asyncQueue", () => {
     const myQueue = asyncQueue({ asyncFunctionArray: functions });
     myQueue.onResponse(({ result, allResults }) => {
       expect(result).toEqual("hi");
-      // expect(allResults).toEqual(["hi"]) //TODO: Fix
+      expect(allResults).toEqual(["hi"]);
+      myQueue.cancel();
       done();
     });
     myQueue.process();
@@ -130,7 +131,7 @@ describe("asyncQueue", () => {
   });
 
   it('should return an error object if there is an error', async (done) => {
-    const mockErrorAsync = (index) => new Promise((resolve, reject) => {
+    const mockErrorAsync = () => new Promise((resolve, reject) => {
       setTimeout(() => {
         reject("yolo");
       }, Math.random() * 1000);

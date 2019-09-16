@@ -48,7 +48,7 @@ const asyncQueue =  ({
     results[queueResult.index] = queueResult.value;
     onResponse({
       result: queueResult.value,
-      allResults: results,
+      allResults: [...results],
       index: queueResult.index
     });
     return worker();
