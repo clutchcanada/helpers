@@ -23,3 +23,4 @@ export * from "./validation";
 export { default as formatPrice } from "./formatPrice";
 export { default as formatMileage } from "./formatMileage";
 export { default as asyncQueue } from "./async-queue";
+export { default as isValidNumber } from './isValidNumber';
