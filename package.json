@@ -1,6 +1,6 @@
 {
   "name": "@clutch/helpers",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "scripts": {
     "build": "rm -rf ./dist && export BABEL_ENV=production && babel src --out-dir dist --ignore 'src/**/*.test.js'",
     "build:test": "rm -rf ./dist && export BABEL_ENV=production && babel src --out-dir dist",
@@ -18,11 +18,13 @@
     "@babel/core": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
     "jest": "^24.7.1"
   },
   "dependencies": {
-    "moment": "^2.24.0",
-    "ramda": "^0.26.1",
-    "uuid": "^3.3.2"
+    "@babel/runtime": "^7.6.0",
+    "moment": "2.24.0",
+    "ramda": "0.26.1",
+    "uuid": "3.3.2"
   }
 }
