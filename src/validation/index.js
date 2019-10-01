@@ -6,4 +6,5 @@ export { default as pastDateValidation } from './pastDate';
 export { default as nameValidation } from './name';
 export { default as whiteSpaceValidation } from './whiteSpace';
 export { default as emailValidation } from './email';
+export { default as latLngValidation } from './latlng';
 export { default as characterLimitValidation } from "./characterLimit";
