@@ -1,1 +1,1 @@
-export default value => value.replace(/\D/g, '');
+export default value => value.replace(/[^0-9\.]+/g, '');
