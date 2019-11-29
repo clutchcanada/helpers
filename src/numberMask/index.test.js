@@ -1,6 +1,9 @@
 import numberMask from "./index";
 
 describe("numberMasking", () => {
+  it('should convert a number into a string and add commas', () => {
+    expect(removeNonNumbers(1000)).toBe("1000");
+  });
   it('should mask numbers with commas', () => {
     expect(numberMask("1234")).toBe("1,234");    
     expect(numberMask("12345")).toBe("12,345");
