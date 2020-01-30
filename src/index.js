@@ -1,4 +1,5 @@
 export { default as addKey } from './addKey';
+export { default as asyncForEach } from "./asyncForEach";
 export { default as asyncQueue } from "./async-queue";
 export { default as calculateElementAttribute } from "./calculateElementAttribute";
 export { default as callAll } from "./callAll";
