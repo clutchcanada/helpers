@@ -4,5 +4,4 @@ const sleep = (timeout = 500) => new Promise((resolve) => {
     }, timeout);
 });
 
-
 export default sleep;
