@@ -22,4 +22,5 @@ export { default as snakeCaseToReadableString } from "./snakeCaseToReadableStrin
 export { default as throwError } from './throwError';
 export { default as truthyOrZero } from "./truthyOrZero";
 export { default as zeroIfEmptyString } from "./zeroIfEmptyString";
+export { default as sleep } from "./sleep";
 export * from "./validation";
