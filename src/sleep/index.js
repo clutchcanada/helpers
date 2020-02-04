@@ -1,4 +1,4 @@
-const sleep = timeout => new Promise((resolve) => {
+const sleep = (timeout = 500) => new Promise((resolve) => {
     setTimeout(() => {
         resolve();
     }, timeout);
