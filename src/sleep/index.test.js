@@ -1,6 +1,13 @@
 import sleep from "./index";
 
 describe("sleep", () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+  afterAll(() => {
+    jest.useRealTimers();
+  })
+  
   it('should wait for sleep to finish before executing function', async() => {
 
     const mockFunction = jest.fn();
@@ -17,4 +24,5 @@ describe("sleep", () => {
     await Promise.resolve();
     expect(mockFunction).toHaveBeenCalled(); 
   });
+
 });
