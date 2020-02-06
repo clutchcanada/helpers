@@ -10,7 +10,7 @@ describe("AsyncFilter", () => {
     });
     const testArray = [0,1,2,5,4];
     const expectedResult = [0,1,2,4];
-    const actual = await asyncFilter(doesValueMatchIndexAsync, testArray);
+    const actual = await asyncFilter(testArray, doesValueMatchIndexAsync);
     expect(actual).toEqual(expectedResult);
   });
 });
