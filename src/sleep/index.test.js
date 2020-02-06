@@ -24,5 +24,4 @@ describe("sleep", () => {
     await Promise.resolve();
     expect(mockFunction).toHaveBeenCalled(); 
   });
-
 });
