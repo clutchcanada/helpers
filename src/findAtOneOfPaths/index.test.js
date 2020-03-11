@@ -10,7 +10,7 @@ describe('findAtOneOfPaths', () => {
   });
 
   it('should return the first non-null/undefined value it finds', () => {
-    const bigObject = { a: [420, 69], c: { d: 1337 }, e: { f: 'blah' } }
+    const bigObject = { a: [420, 69], c: { d: 1337 }, e: { f: 'blah' } };
     expect(findAtOneOfPaths([['a', 1], ['c', 'd'], ['e', 'f']], bigObject)).toBe(69);
     expect(findAtOneOfPaths([['c', 'd'], ['a', 1], ['e', 'f']], bigObject)).toBe(1337);
     expect(findAtOneOfPaths([['e', 'f'], ['a', 1], ['c', 'd']], bigObject)).toBe('blah');
