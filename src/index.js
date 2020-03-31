@@ -26,4 +26,5 @@ export { default as truthyOrZero } from "./truthyOrZero";
 export { default as zeroIfEmptyString } from "./zeroIfEmptyString";
 export { default as sleep } from "./sleep";
 export { default as asyncFilter } from "./async-filter";
+export { default as getFullName } from "./getFullName";
 export * from "./validation";
