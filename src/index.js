@@ -27,4 +27,5 @@ export { default as zeroIfEmptyString } from "./zeroIfEmptyString";
 export { default as sleep } from "./sleep";
 export { default as asyncFilter } from "./async-filter";
 export { default as getFullName } from "./getFullName";
+export { default as hexToRgba } from './hexToRgba';
 export * from "./validation";
