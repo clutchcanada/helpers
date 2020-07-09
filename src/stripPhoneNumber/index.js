@@ -1,7 +1,7 @@
 function stripPhoneNumber(phoneNumber) {
   if (typeof phoneNumber === 'string' || (phoneNumber instanceof String)) {
     const stripedNumber = phoneNumber.replace(/\D/g, '').trim();
-    if(stripedNumber.length >= 11 || stripedNumber < 10) {
+    if(stripedNumber.length >= 11 || stripedNumber.length < 10) {
       return `+${stripedNumber}`;
     } else if (stripedNumber.length === 10) {
       /*
