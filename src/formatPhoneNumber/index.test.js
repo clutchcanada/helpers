@@ -1,6 +1,12 @@
 import formatPhoneNumber from "./index";
 
 describe("formatPhoneNumber", () => {
+
+  it('should return the arguement if passed null or undefined', () => {
+    expect(formatPhoneNumber(null)).toBe(null);
+    expect(formatPhoneNumber(undefined)).toBe(undefined);
+  });
+  
   it('should return null if value is not a string or number', () => {
     const test1 = () => {
       formatPhoneNumber({})
