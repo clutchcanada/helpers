@@ -2,9 +2,19 @@ import formatPhoneNumber from "./index";
 
 describe("formatPhoneNumber", () => {
   it('should return null if value is not a string or number', () => {
-    expect(formatPhoneNumber({})).toBe(null);
-    expect(formatPhoneNumber(true)).toBe(null);
-    expect(formatPhoneNumber([1,2,3])).toBe(null);
+    const test1 = () => {
+      formatPhoneNumber({})
+    };
+    const test2 = () => {
+      formatPhoneNumber(true)
+    };
+    const test3 = () => {
+      formatPhoneNumber([1,2,3])
+    };
+
+    expect(test1).toThrowError();
+    expect(test2).toThrowError();
+    expect(test3).toThrowError();
   });
   
   it('should format the phone number correctly', () => {
