@@ -33,7 +33,9 @@ describe("formatPhoneNumber", () => {
 
   it('should format phoneNumber if number data type', () => {
     expect(formatPhoneNumber(12312312)).toBe("(123) 123-12");
-    
-  })
-  
+  });
+
+  it('should give (416) 910-3549 for +14169103549', () => {
+    expect(formatPhoneNumber('+14169103549')).toBe('(416) 910-3549')
+  });
 });

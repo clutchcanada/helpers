@@ -29,5 +29,9 @@ describe("Phone utils", () =>{
     it('should give +44416258 for +44 (416) 258', () => {
       expect(stripPhoneNumber('+44 (416) 258')).toBe('+44416258');
     });
-  })
-})
+
+    it('should give +14169103549 for 416-910-3549', () => {
+      expect(stripPhoneNumber('416-910-3549')).toBe('+14169103549');
+    });
+  });
+});
