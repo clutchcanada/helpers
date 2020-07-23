@@ -1,6 +1,6 @@
-import validateLatLng from "./index";
+import validateLatLng from './index';
 
-describe("validateLatLng", () => {
+describe('validateLatLng', () => {
   it('should pass for valid lat lngs', () => {
     expect(validateLatLng(43)).toBe(true);
     expect(validateLatLng(47.1231231)).toBe(true);
@@ -8,7 +8,7 @@ describe("validateLatLng", () => {
   });
 
   it('should fail for invalid lat lngs', () => {
-    expect(validateLatLng("asdsad")).toBe(false);
+    expect(validateLatLng('asdsad')).toBe(false);
     expect(validateLatLng([])).toBe(false);
     expect(validateLatLng({})).toBe(false);
     expect(validateLatLng(-180.0000)).toBe(false);

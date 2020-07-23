@@ -4,7 +4,7 @@ describe('isTruthy', () => {
   it('should return true if the content is truthy', () => {
     const result = isTruthy(true)
       && isTruthy({})
-      && isTruthy([1,2,3])
+      && isTruthy([1, 2, 3])
       && isTruthy('not undefined');
 
     expect(result).toBe(true);

@@ -1,5 +1,1 @@
-export default (...functions) => {
-  return (...args) => {
-    return functions.map(fn => fn(...args));
-  }
-}
+export default (...functions) => (...args) => functions.map(fn => fn(...args));
