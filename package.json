@@ -5,7 +5,8 @@
     "build": "rm -rf ./dist && export BABEL_ENV=production && babel src --out-dir dist --ignore 'src/**/*.test.js'",
     "build:test": "rm -rf ./dist && export BABEL_ENV=production && babel src --out-dir dist",
     "test": "./node_modules/.bin/jest --watch",
-    "release": "npm run build:test && npm run test --  --bail --watchAll=false --maxWorkers=1 && npm run build && npm publish"
+    "release": "npm run build:test && npm run test --  --bail --watchAll=false --maxWorkers=1 && npm run build && npm publish",
+    "lint": "npx eslint src"
   },
   "description": "A collection of helper functions we use at clutch",
   "main": "dist/index.js",
@@ -20,7 +21,12 @@
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/plugin-transform-runtime": "^7.4.4",
-    "jest": "^24.7.1"
+    "jest": "^24.7.1",
+    "eslint": "5.15.2",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-jsx-a11y": "6.2.1",
+    "eslint-plugin-react": "7.12.4"
   },
   "dependencies": {
     "@babel/runtime": "^7.6.0",
