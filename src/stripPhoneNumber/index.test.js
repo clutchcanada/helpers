@@ -1,7 +1,7 @@
-import stripPhoneNumber from ".";
+import stripPhoneNumber from '.';
 
-describe("Phone utils", () =>{
-  describe("stripPhoneNumber", () => {
+describe('Phone utils', () => {
+  describe('stripPhoneNumber', () => {
     it('should give +54162584913 for (416) 258-4913', () => {
       expect(stripPhoneNumber('(416) 258-4913)')).toBe('+14162584913');
     });
@@ -17,7 +17,7 @@ describe("Phone utils", () =>{
     it('should give +54162584913 for +5 (416) 258-4913', () => {
       expect(stripPhoneNumber('+5 (416) 258-4913)')).toBe('+54162584913');
     });
-    
+
     it('should give +54162584913 for 5 (416) 258-4913', () => {
       expect(stripPhoneNumber('5 (416) 258-4913)')).toBe('+54162584913');
     });

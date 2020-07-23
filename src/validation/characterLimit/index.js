@@ -1,5 +1,5 @@
 import * as R from 'ramda';
 
-const characterLimit = R.curry((characterLimit, value) => R.length(value) <= characterLimit);
+const characterLimit = R.curry((specifiedLimit, value) => R.length(value) <= specifiedLimit);
 
 export default characterLimit;

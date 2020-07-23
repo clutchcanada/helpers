@@ -13,7 +13,7 @@ describe('hexToRgba', () => {
   it('should throw a TypeError on incorrect argument types', () => {
     const rgba = () => hexToRgba({
       hex: 100,
-      alpha: 'string'
+      alpha: 'string',
     });
 
     expect(rgba).toThrowError(/(Supplied arguments are of wrong type)/g);
@@ -27,4 +27,4 @@ describe('hexToRgba', () => {
 
     expect(rgba).toThrowError(/(The hex string is the wrong length, please include the #)/g);
   });
-})
+});

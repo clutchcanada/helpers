@@ -1,17 +1,17 @@
-import removeNilProperties from "./index";
+import removeNilProperties from './index';
 
-describe("removeNilProperties function", () => {
+describe('removeNilProperties function', () => {
   it('should remove null properties', () => {
-      const inputObject = {
-        a: null,
-        b: 1,
-      };
+    const inputObject = {
+      a: null,
+      b: 1,
+    };
 
-      const expectedObject = { b: 1 };
+    const expectedObject = { b: 1 };
 
-      expect(removeNilProperties(inputObject)).toEqual(expectedObject);
+    expect(removeNilProperties(inputObject)).toEqual(expectedObject);
   });
-  
+
   it('should remove undefined properties', () => {
     const inputObject = {
       a: undefined,
@@ -38,7 +38,7 @@ describe("removeNilProperties function", () => {
     const inputObject = {
       a: {
         c: null,
-        d: 2
+        d: 2,
       },
       b: 1,
     };

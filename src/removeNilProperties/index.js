@@ -6,6 +6,7 @@ function removeNilProperties(obj) {
       obj[propName] === undefined ||
       obj[propName] === ''
     ) {
+      // eslint-disable-next-line no-param-reassign
       delete obj[propName];
     } else if (typeof obj[propName] === 'object') {
       // Recurse here if the property is another object.

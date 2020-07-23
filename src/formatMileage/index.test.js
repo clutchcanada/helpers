@@ -2,7 +2,7 @@ import formatMileage from './index';
 
 describe('formatMileage', () => {
   it('should shorten mileage if mileage exists', () => {
-    const mileage = 50000
+    const mileage = 50000;
     const result = formatMileage(mileage);
 
     expect(result).toBe('50K');
@@ -20,7 +20,7 @@ describe('formatMileage', () => {
     expect(result).toBe('0');
   });
   it('should throw error if mileage is not a number', () => {
-    const mileage = "TEST";
+    const mileage = 'TEST';
     const result = () => formatMileage(mileage);
 
     expect(result).toThrowError();

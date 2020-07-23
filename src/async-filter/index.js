@@ -1,4 +1,4 @@
-import * as R from "ramda";
+import * as R from 'ramda';
 
 const asyncFilter = R.curry(async (array, callback) => {
   const fail = Symbol('Denotes callback failure');
