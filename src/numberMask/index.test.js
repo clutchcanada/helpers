@@ -6,5 +6,6 @@ describe('numberMasking', () => {
     expect(numberMask('12345')).toBe('12,345');
     expect(numberMask('123456789')).toBe('123,456,789');
     expect(numberMask('99999999')).toBe('99,999,999');
+    expect(numberMask('-99999999')).toBe('-99,999,999');
   });
 });

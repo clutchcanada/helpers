@@ -37,4 +37,7 @@ describe('formatPhoneNumber', () => {
   it('should give (416) 910-3549 for +14169103549', () => {
     expect(formatPhoneNumber('+14169103549')).toBe('(416) 910-3549');
   });
+  it('should give (647) 780-2498 for +16477802498', () => {
+    expect(formatPhoneNumber(+16477802498)).toBe('(647) 780-2498');
+  });
 });

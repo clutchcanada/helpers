@@ -1,6 +1,14 @@
 import * as R from 'ramda';
-import removeNonNumbers from '../removeNonNumbers';
+
+// Removes non numeric values but allows preceding - and decimal places
+const removeNonNumeric = value => value.replace(/(?<!^)-|[^0-9.-]+/g, '');
 
 const addCommasToNumber = (value = '') => value.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
 
-export default R.pipe(R.toString, removeNonNumbers, addCommasToNumber);
+const numberMask = R.pipe(
+  String,
+  removeNonNumeric,
+  addCommasToNumber
+);
+
+export default numberMask;
