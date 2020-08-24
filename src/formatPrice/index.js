@@ -1,4 +1,6 @@
-export default (price, dropCents = true) => {
+import * as R from 'ramda';
+
+const formatPrice = (price, dropCents = true) => {
   const options = {
     style: 'decimal',
     useGrouping: true,
@@ -11,6 +13,11 @@ export default (price, dropCents = true) => {
     options.minimumFractionDigits = 2;
     options.maximumFractionDigits = 2;
   }
-
-  return `$${(price || 0.0).toLocaleString('en-CA', options)}`;
+  const priceString = (price || 0.0).toLocaleString('en-CA', options);
+  if (priceString.charAt(0) === '-') {
+    return `-$${R.tail(priceString)}`;
+  }
+  return `$${priceString}`;
 };
+
+export default formatPrice;

@@ -14,4 +14,11 @@ describe('formatPrice', () => {
 
     expect(result).toBe('$18,950.00');
   });
+
+  it('should handle negative values', () => {
+    const price = -18950;
+    const result = formatPrice(price, false);
+
+    expect(result).toBe('-$18,950.00');
+  });
 });
