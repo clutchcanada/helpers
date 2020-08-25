@@ -8,5 +8,9 @@ describe('numberMasking', () => {
     expect(numberMask('99999999')).toBe('99,999,999');
     expect(numberMask('-99999999')).toBe('-99,999,999');
     expect(numberMask('-')).toBe('-');
+    expect(numberMask('-99999-999')).toBe('-99,999,999');
+    expect(numberMask('')).toBe('');
+    expect(numberMask('0')).toBe('0');
+    expect(numberMask(undefined)).toBe('');
   });
 });
