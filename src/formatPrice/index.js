@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 
-const formatPrice = (price, dropCents = true) => {
+const formatPrice = (price, { dropCents = true } = {}) => {
   const options = {
     style: 'decimal',
     useGrouping: true,

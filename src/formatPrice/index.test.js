@@ -10,14 +10,14 @@ describe('formatPrice', () => {
 
   it('should show cents if dropCents equals false', () => {
     const price = 18950;
-    const result = formatPrice(price, false);
+    const result = formatPrice(price, { dropCents: false });
 
     expect(result).toBe('$18,950.00');
   });
 
   it('should handle negative values', () => {
     const price = -18950;
-    const result = formatPrice(price, false);
+    const result = formatPrice(price, { dropCents: false });
 
     expect(result).toBe('-$18,950.00');
   });
