@@ -3,9 +3,6 @@ import throwError from '../throwError';
 
 const formatMileage = mileage => mileage.toLocaleString('en-CA');
 
-const shortenMileage = mileage =>
-  (mileage < 1000 ? mileage.toString() : `${Math.round(formatMileage(mileage / 1000))}K`);
-
 export default (mileage) => {
   if (R.isNil(mileage)) {
     throwError('No mileage found');
@@ -13,5 +10,5 @@ export default (mileage) => {
   if (!R.is(Number, mileage)) {
     throwError('Your mileage is not a number');
   }
-  return shortenMileage(mileage);
+  return formatMileage(mileage);
 };
