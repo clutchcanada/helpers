@@ -5,7 +5,7 @@ describe('formatMileage', () => {
     const mileage = 50000;
     const result = formatMileage(mileage);
 
-    expect(result).toBe('50K');
+    expect(result).toBe('50,000');
   });
   it('should throw error if mileage does not exist', () => {
     const mileage = null;
