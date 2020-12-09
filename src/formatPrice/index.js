@@ -1,5 +1,3 @@
-import * as R from 'ramda';
-
 const formatPrice = (price, { dropCents = true } = {}) => {
   const options = {
     style: 'decimal',
@@ -15,7 +13,7 @@ const formatPrice = (price, { dropCents = true } = {}) => {
   }
   const priceString = (price || 0.0).toLocaleString('en-CA', options);
   if (priceString.charAt(0) === '-') {
-    return `-$${R.tail(priceString)}`;
+    return `-$${priceString.slice(1)}`;
   }
   return `$${priceString}`;
 };
