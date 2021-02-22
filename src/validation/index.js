@@ -8,3 +8,4 @@ export { default as whiteSpaceValidation } from './whiteSpace';
 export { default as emailValidation } from './email';
 export { default as latLngValidation } from './latlng';
 export { default as characterLimitValidation } from './characterLimit';
+export { default as isValidVin } from './isValidVin';
