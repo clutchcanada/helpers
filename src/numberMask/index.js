@@ -1,20 +1,14 @@
-import * as R from 'ramda';
-
-// Removes non numeric values
-const removeNonNumeric = value => value.replace(/[^0-9.]+/g, '');
-
-const addCommasToNumber = (value = '') => value.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-
+/**
+ * Given a Number, return a masked version with commas and squash to 2 fractionals
+ * @param {Number} value Number to be masked
+ * @returns String
+ */
 const numberMask = (value) => {
-  const stringValue = String(value);
-  const isNegative = stringValue.charAt(0) === '-';
+  if (value === null || value === 0 || value === '') return 0;
+  const valueAsNumber = parseFloat(value);
+  const localeOptions = valueAsNumber % 1 !== 0 ? { minimumFractionDigits: 2 } : {};
 
-  /*
-    We did have a negative look behind regex but it is not
-    supported in safari so had to to do it more manually
-  */
-  const numberValue = isNegative ? `-${removeNonNumeric(R.tail(stringValue))}` : removeNonNumeric(stringValue);
-  return addCommasToNumber(numberValue);
+  return !Number.isNaN(valueAsNumber) ? valueAsNumber.toLocaleString('en-CA', localeOptions) : 0;
 };
 
 export default numberMask;
