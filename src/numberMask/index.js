@@ -8,7 +8,7 @@ const numberMask = (value) => {
   const valueAsNumber = parseFloat(value);
   const localeOptions = valueAsNumber % 1 !== 0 ? { minimumFractionDigits: 2 } : {};
 
-  return !Number.isNaN(valueAsNumber) ? valueAsNumber.toLocaleString('en-CA', localeOptions) : 0;
+  return !Number.isNaN(valueAsNumber) ? valueAsNumber.toLocaleString('en-CA', localeOptions) : '0';
 };
 
 export default numberMask;
