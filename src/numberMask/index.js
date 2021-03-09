@@ -4,7 +4,7 @@
  * @returns String
  */
 const numberMask = (value) => {
-  if (value === null || value === 0 || value === '') return 0;
+  if (!value) return '0';
   const valueAsNumber = parseFloat(value);
   const localeOptions = valueAsNumber % 1 !== 0 ? { minimumFractionDigits: 2 } : {};
 
