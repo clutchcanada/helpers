@@ -4,11 +4,12 @@
  * @returns String
  */
 const numberMask = (value) => {
-  if (!value) return '0';
+  if (!value) return '';
+  if (value === '-') return '-';
   const valueAsNumber = parseFloat(value);
   const localeOptions = valueAsNumber % 1 !== 0 ? { minimumFractionDigits: 2 } : {};
 
-  return !Number.isNaN(valueAsNumber) ? valueAsNumber.toLocaleString('en-CA', localeOptions) : '0';
+  return !Number.isNaN(valueAsNumber) ? valueAsNumber.toLocaleString('en-CA', localeOptions) : '';
 };
 
 export default numberMask;
