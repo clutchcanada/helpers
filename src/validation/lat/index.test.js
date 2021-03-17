@@ -12,5 +12,6 @@ describe('validateLat', () => {
     expect(validateLat([])).toBe(false);
     expect(validateLat({})).toBe(false);
     expect(validateLat(-92)).toBe(false);
+    expect(validateLat(120)).toBe(false);
   });
 });

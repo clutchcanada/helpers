@@ -5,6 +5,7 @@ describe('validateLong', () => {
     expect(validateLong(43)).toBe(true);
     expect(validateLong(47.1231231)).toBe(true);
     expect(validateLong(-42.122)).toBe(true);
+    expect(validateLong(120)).toBe(true);
   });
 
   it('should fail for invalid long', () => {
