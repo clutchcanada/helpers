@@ -8,7 +8,7 @@ const transliterate = (c) => {
 // Validates VIN for North American Vehicles
 const isValidVin = (vin) => {
   if (vin.length !== 17) {
-    return { errorMessage: 'VIN must contain 17 characters.' };
+    return { errorMessage: 'VIN must contain 17 characters.', isValid: false };
   }
 
   // validate check digit
@@ -21,7 +21,7 @@ const isValidVin = (vin) => {
   }
 
   if (map[sum % 11] !== vin[8]) {
-    return { errorMessage: 'Invalid VIN format' };
+    return { errorMessage: 'Invalid VIN format', isValid: false };
   }
 
   return { isValid: true };
