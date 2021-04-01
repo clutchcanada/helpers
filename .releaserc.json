@@ -5,6 +5,7 @@
     { "name": "master" },
     { "name": "develop", "channel": "develop", "prerelease": true }
   ],
+  "dryRun": true,
   "debug": true,
   "preset": "conventionalcommits",
   "plugins": [
