@@ -8,7 +8,8 @@
   "scripts": {
     "build": "rm -rf ./dist && export BABEL_ENV=production && babel src --out-dir dist --ignore 'src/**/*.test.js'",
     "build:test": "rm -rf ./dist && export BABEL_ENV=production && babel src --out-dir dist",
-    "test": "npx jest --watch",
+    "test": "npx jest",
+    "test:watch": "npm run test -- --watch",
     "version": "npm run build",
     "release": "npm run build:test && npm run test --  --bail --watchAll=false --maxWorkers=1 && npm run build && npm publish",
     "lint": "npx eslint src",
