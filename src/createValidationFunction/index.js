@@ -1,9 +1,9 @@
 export const validationWrapper = ({ didValidate, value }) => ({
-  pass: (passFn) => {
+  pass: passFn => {
     if (didValidate) passFn(value);
     return validationWrapper({ didValidate, value });
   },
-  fail: (failFn) => {
+  fail: failFn => {
     if (!didValidate) failFn(value);
     return validationWrapper({ didValidate, value });
   },
@@ -12,7 +12,7 @@ export const validationWrapper = ({ didValidate, value }) => ({
 export const createValidationFunction = (
   validationFn,
   validationWrapperDep = validationWrapper,
-) => (paramToValidate) => {
+) => paramToValidate => {
   const didValidate = validationFn(paramToValidate);
   return validationWrapperDep({ didValidate, value: paramToValidate });
 };

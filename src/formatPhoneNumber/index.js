@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import throwError from '../throwError';
 
-export default (value) => {
+export default value => {
   if (R.isNil(value)) {
     return value;
   }

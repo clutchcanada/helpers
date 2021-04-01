@@ -3,7 +3,7 @@ import throwError from '../throwError';
 
 const formatMileage = mileage => mileage.toLocaleString('en-CA');
 
-export default (mileage) => {
+export default mileage => {
   if (R.isNil(mileage)) {
     throwError('No mileage found');
   }

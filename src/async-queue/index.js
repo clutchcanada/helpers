@@ -36,7 +36,7 @@ const asyncQueue = ({
     };
   };
 
-  const handleQueueResult = (queueResult) => {
+  const handleQueueResult = queueResult => {
     results[queueResult.index] = queueResult.value;
     if (!queueResult.value.error) {
       onResult({
@@ -82,10 +82,10 @@ const asyncQueue = ({
 
   return {
     process,
-    onResult: (fn) => {
+    onResult: fn => {
       onResult = fn;
     },
-    onError: (fn) => {
+    onError: fn => {
       onError = fn;
     },
     cancel: () => {

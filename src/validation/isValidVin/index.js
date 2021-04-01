@@ -1,12 +1,10 @@
 // Validation Referenced from: https://stackoverflow.com/questions/26407015/javascript-jquery-vin-validator/26408196
 
 // source: https://en.wikipedia.org/wiki/Vehicle_identification_number#Example_Code
-const transliterate = (c) => {
-  return '0123456789.ABCDEFGH..JKLMN.P.R..STUVWXYZ'.indexOf(c) % 10;
-};
+const transliterate = c => '0123456789.ABCDEFGH..JKLMN.P.R..STUVWXYZ'.indexOf(c) % 10;
 
 // Validates VIN for North American Vehicles
-const isValidVin = (vin) => {
+const isValidVin = vin => {
   if (vin.length !== 17) {
     return { errorMessage: 'VIN must contain 17 characters.', isValid: false };
   }

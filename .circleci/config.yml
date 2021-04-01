@@ -1,0 +1,118 @@
+version: 2.1
+
+defaults: &defaults
+  working_directory: ~/helpers
+  docker:
+    - image: circleci/node:14
+
+ensure-npm: &ensure-npm
+  run:
+    name: Ensure latest npm is installed
+    # source: https://discuss.circleci.com/t/taking-advantage-of-npm-ci/20734/6
+    command: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "7" ]; then sudo npm i -g npm; else echo "npm@7 is now natively included"; fi
+
+restore-cached-repo: &restore-cached-repo
+  restore_cache:
+    name: Restore cached repo
+    keys:
+      - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+
+jobs:
+  checkout:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+
+      - <<: *ensure-npm
+
+      - run: npm install
+
+      - save_cache:
+          name: Store npm modules cache
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+      - save_cache:
+          name: Store repo with modules
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/helpers
+
+  lint:
+    <<: *defaults
+    steps:
+      - <<: *restore-cached-repo
+
+      - <<: *ensure-npm
+
+      # See https://circleci.com/docs/2.0/collect-test-data/#enabling-formatters
+      - run:
+          name: eslint
+          command: |
+            mkdir -p /tmp/test-results
+            npm run lint -- --format junit --output-file /tmp/test-results/eslint.xml
+
+      - store_test_results:
+          name: Store eslint test results
+          path: /tmp/test-results
+
+      - run:
+          name: npm audit
+          command: npm audit
+
+      - run:
+          name: Check for circular dependencies
+          command: npx madge -c src/
+
+  test:
+    <<: *defaults
+    parallelism: 1
+    steps:
+      - <<: *restore-cached-repo
+
+      - <<: *ensure-npm
+
+      - run:
+          name: Run tests
+          command: npm run test
+
+  release:
+    <<: *defaults
+    steps:
+      - <<: *restore-cached-repo
+
+      - run:
+          name: build
+          command: npm run build
+
+      - run:
+          name: release
+          command: npm run semantic-release
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - checkout
+      - lint:
+          requires:
+            - checkout
+      - test:
+          requires:
+            - checkout
+      - release:
+          requires:
+            - test
+            - lint
+          filters:
+            branches:
+              only:
+                - master
+                - main
+                - develop
+                - /^release\/.*/
