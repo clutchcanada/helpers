@@ -1,3 +1,8 @@
 node_modules
 dist
 .vscode
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+*.orig
