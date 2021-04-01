@@ -2,7 +2,7 @@ import asyncFilter from './index';
 
 describe('AsyncFilter', () => {
   it('should filter out falsey results', async () => {
-    const doesValueMatchIndexAsync = (item, index) => new Promise((resolve) => {
+    const doesValueMatchIndexAsync = (item, index) => new Promise(resolve => {
       setTimeout(() => {
         resolve(item === index);
       }, 200);

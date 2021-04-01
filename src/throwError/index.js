@@ -1,3 +1,3 @@
-export default (error) => {
+export default error => {
   throw new Error(error);
 };

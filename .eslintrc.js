@@ -1,20 +1,27 @@
 module.exports = {
   extends: 'airbnb',
   env: {
-    browser: true,
-    node: true,
     jest: true,
-    jasmine: true,
   },
   globals: {},
   rules: {
+    'max-len': ['error', {
+      "code": 120,
+      "tabWidth": 2,
+      "ignoreComments": true,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true,
+    }],
+    'arrow-parens': ['error', 'as-needed'],
     'lines-between-class-members': 0,
     'no-else-return': 0,
     'import/order': 0,
     'implicit-arrow-linebreak': 0,
     'no-multiple-empty-lines': 0,
     'operator-linebreak': 0,
-    'no-console': 'off',
+    'no-console': ['error'],
     'no-plusplus': 'off',
     'no-underscore-dangle': 'off',
     'comma-dangle': [
@@ -29,6 +36,6 @@ module.exports = {
     ],
     'function-paren-newline': 0,
     'prefer-destructuring': 0,
-    'object-curly-newline': 0
+    'object-curly-newline': 0,
   },
 };

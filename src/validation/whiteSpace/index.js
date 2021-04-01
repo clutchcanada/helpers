@@ -1,4 +1,4 @@
-export default (value) => {
+export default value => {
   const whiteSpaceRegex = /\s/;
   return !whiteSpaceRegex.test(value);
 };

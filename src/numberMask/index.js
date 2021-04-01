@@ -1,13 +1,13 @@
 import * as R from 'ramda';
 
-const removeNonNumeric = (value) => value.replace(/[^0-9.]+/g, '');
+const removeNonNumeric = value => value.replace(/[^0-9.]+/g, '');
 
 /**
  * Given a Number, return a masked version with commas and round to 2 fractionals
  * @param {Number} value Number to be masked
  * @returns String
  */
-const numberMask = (value) => {
+const numberMask = value => {
   if (['-', '', undefined, null].includes(value)) return value || '';
   const stringValue = String(value);
   const isNegative = stringValue.charAt(0) === '-';
