@@ -1,6 +1,6 @@
 {
   "name": "@clutch/helpers",
-  "version": "1.22.0-develop.1",
+  "version": "1.22.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:clutchcanada/helpers.git"
