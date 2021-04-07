@@ -1,5 +1,7 @@
 const hexToRgba = ({ hex, alpha }) => {
-  if (typeof hex !== 'string' && typeof alpha !== 'number') { throw new TypeError('Supplied arguments are of wrong type'); }
+  if (typeof hex !== 'string' && typeof alpha !== 'number') {
+    throw new TypeError('Supplied arguments are of wrong type');
+  }
 
   if (hex.length !== 7) throw new Error('The hex string is the wrong length, please include the #');
 

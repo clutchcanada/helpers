@@ -1,12 +1,12 @@
 import asyncQueue from './index';
 
 describe('asyncQueue', () => {
-  const mockAsync = () => new Promise((resolve) => {
+  const mockAsync = () => new Promise(resolve => {
     setTimeout(() => {
       resolve('hi');
     }, Math.random() * 1000);
   });
-  it('should give results of all async functions', async (done) => {
+  it('should give results of all async functions', async done => {
     const functions = [
       mockAsync,
       mockAsync,
@@ -22,7 +22,7 @@ describe('asyncQueue', () => {
     done();
   });
 
-  it('should call onResult when a function resolves', (done) => {
+  it('should call onResult when a function resolves', done => {
     const functions = [
       mockAsync,
       mockAsync,
@@ -42,7 +42,7 @@ describe('asyncQueue', () => {
     myQueue.process();
   });
 
-  it('should be able to cancel the queue', async (done) => {
+  it('should be able to cancel the queue', async done => {
     const functions = [
       mockAsync,
       mockAsync,
@@ -61,7 +61,7 @@ describe('asyncQueue', () => {
     done();
   });
 
-  it('should be able to resume queue', async (done) => {
+  it('should be able to resume queue', async done => {
     const onResultMock = jest.fn();
     const functions = [
       mockAsync,
@@ -86,7 +86,7 @@ describe('asyncQueue', () => {
     done();
   });
 
-  it('should spawn as many consumers as specified in the concurrentCount', async (done) => {
+  it('should spawn as many consumers as specified in the concurrentCount', async done => {
     const functions = [
       mockAsync,
       mockAsync,
@@ -105,8 +105,8 @@ describe('asyncQueue', () => {
     done();
   });
 
-  it('should preserve order of functions', async (done) => {
-    const createMockAsync = value => () => new Promise((resolve) => {
+  it('should preserve order of functions', async done => {
+    const createMockAsync = value => () => new Promise(resolve => {
       setTimeout(() => {
         resolve(value);
       }, Math.random() * 1000);
@@ -129,7 +129,7 @@ describe('asyncQueue', () => {
     done();
   });
 
-  it('should return an error object if there is an error', async (done) => {
+  it('should return an error object if there is an error', async done => {
     const mockErrorAsync = () => new Promise((resolve, reject) => {
       setTimeout(() => {
         // eslint-disable-next-line prefer-promise-reject-errors
@@ -152,7 +152,7 @@ describe('asyncQueue', () => {
     done();
   });
 
-  it('should call onError on error', async (done) => {
+  it('should call onError on error', async done => {
     const mockErrorAsync = () => new Promise((resolve, reject) => {
       setTimeout(() => {
         // eslint-disable-next-line prefer-promise-reject-errors

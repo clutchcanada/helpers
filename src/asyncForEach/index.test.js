@@ -2,7 +2,7 @@ import asyncForEach from './index';
 
 describe('asyncForEach', () => {
   const shouldPreserveOrder = [];
-  const asyncPush = num => new Promise((resolve) => {
+  const asyncPush = num => new Promise(resolve => {
     setTimeout(() => {
       shouldPreserveOrder.push(num);
       resolve(num);
