@@ -15,4 +15,6 @@ updates:
     labels:
       - "dependencies"
     reviewers:
-      - "rhamzeh"
+      - "scottdougan"
+      - "RyanGundu"
+      - "JesseDavda"
