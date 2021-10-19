@@ -11,12 +11,11 @@ describe('paginatedForEach', () => {
       count: dataLength,
     }));
 
-    let processedDataArray = [];
     const processPageMock = jest.fn(
-      dataPage => { processedDataArray = [...processedDataArray, ...dataPage.map(value => value + 1)]; }
+      dataPage => dataPage.map(value => value + 1)
     );
 
-    await paginatedForEach({
+    const processedDataArray = await paginatedForEach({
       pageSize,
       getPage: getPageMock,
       processPage: processPageMock,

@@ -1,10 +1,11 @@
-async function paginatedForEach({ pageSize, getPage, processPage, logger, progressLog }) {
+async function paginatedForEach({ pageSize = 100, getPage, processPage, logger, progressLog }) {
   let pageIndex = 0;
   let finished = false;
+  let results = [];
 
   while (!finished) {
     // eslint-disable-next-line no-await-in-loop
-    const { count, rows = [] } = await getPage(pageIndex);
+    const { count, rows = [] } = await getPage(pageIndex, pageSize);
 
     // eslint-disable-next-line no-unused-expressions
     logger && logger.info({
@@ -14,7 +15,10 @@ async function paginatedForEach({ pageSize, getPage, processPage, logger, progre
 
     if (rows.length) {
       // eslint-disable-next-line no-await-in-loop
-      await processPage(rows);
+      const result = await processPage(rows);
+      if (result instanceof Array) {
+        results = [...results, ...result];
+      }
     }
 
     pageIndex++;
@@ -22,6 +26,8 @@ async function paginatedForEach({ pageSize, getPage, processPage, logger, progre
       finished = true;
     }
   }
+
+  return results;
 }
 
 export default paginatedForEach;
