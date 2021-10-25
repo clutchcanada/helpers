@@ -30,4 +30,5 @@ export { default as getFullName } from './getFullName';
 export { default as hexToRgba } from './hexToRgba';
 export { default as stripPhoneNumber } from './stripPhoneNumber';
 export { default as removeNilProperties } from './removeNilProperties';
+export { default as paginatedForEach } from './paginatedForEach';
 export * from './validation';
