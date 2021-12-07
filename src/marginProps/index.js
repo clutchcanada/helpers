@@ -1,8 +1,8 @@
 const marginProps = ({
-  marginTop = 0,
-  marginRight = 0,
-  marginBottom = 0,
-  marginLeft = 0,
-}) => `margin: ${marginTop} ${marginRight} ${marginBottom} ${marginLeft};`;
+  margintop = 0,
+  marginright = 0,
+  marginbottom = 0,
+  marginleft = 0,
+}) => `margin: ${margintop} ${marginright} ${marginbottom} ${marginleft};`;
 
 export default marginProps;
