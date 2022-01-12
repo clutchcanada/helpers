@@ -10,6 +10,7 @@ export { default as extractKey } from './extractKey';
 export { default as extractValueFromEvent } from './extractValueFromEvent';
 export { default as findAtOneOfPaths } from './findAtOneOfPaths';
 export { default as formatDateLong } from './formatDateLong';
+export { default as formatDateWithTime } from './formatDateWithTime';
 export { default as formatMileage } from './formatMileage';
 export { default as formatPhoneNumber } from './formatPhoneNumber';
 export { default as formatPrice } from './formatPrice';
