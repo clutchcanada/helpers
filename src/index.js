@@ -12,6 +12,7 @@ export { default as findAtOneOfPaths } from './findAtOneOfPaths';
 export { default as formatMileage } from './formatMileage';
 export { default as formatPhoneNumber } from './formatPhoneNumber';
 export { default as formatPrice } from './formatPrice';
+export { default as formatSeconds } from './formatSeconds';
 export { default as includes } from './includes';
 export { default as isTruthy } from './isTruthy';
 export { default as isValidNumber } from './isValidNumber';
