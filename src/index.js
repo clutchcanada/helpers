@@ -17,6 +17,7 @@ export { default as includes } from './includes';
 export { default as isTruthy } from './isTruthy';
 export { default as isValidNumber } from './isValidNumber';
 export { default as numberMask } from './numberMask';
+export { default as marginProps } from './marginProps';
 export { default as persistEvent } from './persistEvent';
 export { default as preventDefault } from './preventDefault';
 export { default as reconstructEvent } from './reconstructEvent';
