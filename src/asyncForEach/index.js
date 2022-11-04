@@ -1,7 +1,7 @@
 const asyncForEach = async (array, callback) => {
-  await array.reduce(async (lastPromise, item) => {
+  await array.reduce(async (lastPromise, item, index) => {
     await lastPromise;
-    await callback(item);
+    await callback(item, index);
     return true;
   }, Promise.resolve());
 };
