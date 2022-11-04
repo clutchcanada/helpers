@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import formatDateLong from './index';
 
 describe('formatDateWithTime', () => {
@@ -5,7 +6,8 @@ describe('formatDateWithTime', () => {
     const moonLanding = -14182940000;
     const result = formatDateLong(moonLanding);
 
-    expect(result).toBe('July 20, 1969 04:17 PM');
+    const expectedResult = dayjs(moonLanding).format('MMMM D, YYYY hh:mm A');
+    expect(result).toBe(expectedResult);
   });
 
   it('should handle an invalid date', () => {
