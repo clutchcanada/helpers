@@ -2,7 +2,7 @@ import futureDateValidation from './index';
 
 describe('Future date validation', () => {
   it('should pass if right format and future', () => {
-    expect(futureDateValidation('06/24/2022')).toBe(true);
+    expect(futureDateValidation('06/24/2025')).toBe(true);
     expect(futureDateValidation('12/01/3000')).toBe(true);
     expect(futureDateValidation('08/22/2024')).toBe(true);
   });
